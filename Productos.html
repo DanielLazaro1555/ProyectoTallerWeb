@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Productos</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="Logo.png" alt="Logo" height="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sedes.html">Sedes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Categorias.html">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Productos.html">Mis productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="SobreNosotros.html">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="SobreNosotros.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Barra de búsqueda con Bootstrap y formulario -->
+    <div class="container mt-3">
+        <form id="searchForm" class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput">
+        </form>
+
+        <!-- Contenedor para mostrar los resultados -->
+        <div id="result" class="row mt-3">
+            <!-- Los resultados de la búsqueda se mostrarán aquí -->
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap y jQuery (asegúrate de incluir jQuery antes de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script personalizado para la búsqueda -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const apiUrl = 'https://raw.githubusercontent.com/DanielLazaro1555/APIpublicFerreteria/main/public/lambda/bd.json';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error de red: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Accede a las imágenes y descripciones y muestra en la página con Bootstrap
+                    const resultDiv = document.getElementById('result');
+
+                    data.forEach(item => {
+                        const itemContainer = document.createElement('div');
+                        itemContainer.className = 'col-md-4 item'; // Ajusta la cantidad de columnas según tu diseño
+
+                        const card = document.createElement('div');
+                        card.className = 'card';
+
+                        const image = document.createElement('img');
+                        image.src = `https://raw.githubusercontent.com/DanielLazaro1555/APIpublicFerreteria/main/public/${item.imagen}`;
+                        image.className = 'card-img-top';
+                        card.appendChild(image);
+
+                        const cardBody = document.createElement('div');
+                        cardBody.className = 'card-body';
+
+                        const description = document.createElement('p');
+                        description.textContent = item.descripcion;
+                        description.className = 'card-text';
+                        cardBody.appendChild(description);
+
+                        card.appendChild(cardBody);
+                        itemContainer.appendChild(card);
+
+                        resultDiv.appendChild(itemContainer);
+                    });
+
+                    // Llamada a la función de búsqueda al escribir en la barra de búsqueda
+                    $("#searchInput").on("input", function () {
+                        var value = $(this).val().toLowerCase(); // Obtener el valor y convertirlo a minúsculas
+                        $(".item").each(function () { // Iterar sobre los elementos con la clase 'item'
+                            var text = $(this).text().toLowerCase(); // Obtener el texto del elemento y convertirlo a minúsculas
+                            var isVisible = text.includes(value); // Verificar si el texto incluye el valor de búsqueda
+                            $(this).toggle(isVisible); // Mostrar/ocultar según la búsqueda
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar los datos de la API:', error);
+
+                    // Muestra un mensaje de error en la página
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = `<p class="text-danger">Error al cargar los datos de la API. Consulta la consola para más detalles.</p>`;
+                });
+        });
+    </script>
+
+
+</body>
+
+</html>
