@@ -41,83 +41,87 @@
 </head>
 
 <body>
-    <div class="animated-background"></div>
+    <div class="animated-background">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="Logo.png" alt="Logo" height="70">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Sedes.html">Sedes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Categorias.html">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Productos.html">Mis productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="SobreNosotros.html">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="SobreNosotros.html">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="Logo.png" alt="Logo" height="70">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Sedes.html">Sedes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Categorias.html">Categorias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Productos.html">Mis productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="SobreNosotros.html">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="SobreNosotros.html">Contacto</a>
-                    </li>
-                </ul>
+            <!-- Contenedor del formulario con clases Bootstrap -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-6">
+                    <div class="p-4 bg-light rounded">
+                        <h1 class="text-center mb-4">Formulario de Contacto</h1>
+                        <form action="https://formsubmit.co/your@email.com" method="POST">
+                            <!-- Campo de Nombre -->
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="name" placeholder="Tu nombre"
+                                    required>
+                            </div>
+
+                            <!-- Campo de Correo Electrónico -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="tucorreo@example.com" required>
+                            </div>
+
+                            <!-- Campo de Mensaje -->
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="mensaje" name="mensaje" rows="4"
+                                    placeholder="Escribe tu mensaje aquí" required></textarea>
+                            </div>
+
+                            <!-- Botón de Enviar -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            </div>
+
+                            <input type="hidden" name="_next" value="">
+                            <input type="hidden" name="_captcha" value="false">
+
+                        </form>
+                        <footer class="footer mt-auto py-3 bg-light">
+                            <div class="container text-center">
+                                <span class="text-muted">© 2023 Daniel Huamán Lázaro</span>
+                            </div>
+                        </footer>
+
+
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Contenedor del formulario con clases Bootstrap -->
-    <div class="container position-absolute top-50 start-50 translate-middle p-4 bg-light rounded"
-        style="width: 90%; max-width: 400px;">
-        <h1 class="text-center mb-4">Formulario de Contacto</h1>
-
-        <!-- Formulario de contacto -->
-        <form netlify method="post">
-        <!-- Campo de Nombre -->
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="name" placeholder="Tu nombre" required>
-        </div>
-
-        <!-- Campo de Correo Electrónico -->
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="tucorreo@example.com"
-                required>
-        </div>
-
-        <!-- Campo de Mensaje -->
-        <div class="mb-3">
-            <label for="mensaje" class="form-label">Mensaje</label>
-            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí"
-                required></textarea>
-        </div>
-
-        <!-- Botón de Enviar -->
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-        </div>
-
-        <input type="hidden" name="_captcha" value="false">
-
-        </form>
-        <footer class="footer mt-auto py-3 bg-light">
-            <div class="container text-center">
-                <span class="text-muted">© 2023 Daniel Huamán Lázaro</span>
-            </div>
-        </footer>
     </div>
-
-
-
 
     <!-- Enlaces a Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
